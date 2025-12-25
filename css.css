@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snow Test</title>
+
+<style>
+body {
+    background: #FBEFEF;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    color: #b11226;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+h1 {
+    margin-top: 100px;
+    font-size: 3em;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+.snowflake {
+    position: fixed;
+    top: -20px;
+    color: #d0e7ff;
+    font-size: 20px;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+.gift { 
+    font-size: 80px;
+    cursor: pointer;
+    margin-top: 100px;
+    transition: transform 0.3s;
+} 
+.gift:hover {
+    transform: scale(1.1);
+}
+.gift.opened { 
+    animation: pop 0.6s ease;
+}
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+.message {
+    font-size: 1.5em;
+    margin-top: 20px;
+    display: none;
+}
+.letter {
+    top: 0;
+    left: 0;
+    font-size: 40px;
+    cursor: pointer;
+    position: absolute;
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 0.6s ease, opacity 0.3s;
+    pointer-events: auto;
+}
+#letters { 
+    display: none; /* ซ่อนตั้งแต่แรก */
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#gift-area { 
+    position: relative;
+    height: 200px;
+}
+.popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+.popup-content { 
+    background: white;
+    color:#b11226;
+    padding: 25px 30px;
+    border-radius: 16px;
+    max-width: 300px;
+    text-align: center;
+    animation: pop 0.4s ease;
+    position: relative;
+}
+.popup-content p {
+    font-size: 1.2em;
+    margin: 0;
+    text-align: center;
+}
+.close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    cursor: pointer;
+    font-size: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎄 Merry Christmas 🎄</h1>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<div id="yt-player"></div>
+
+<div id="gift-area">
+   <div class="gift" onclick="openGift()">🎁</div>
+
+   <div id="popup" class="popup">
+      <div class="popup-content">
+         <span class="close" onclick="closePopup()">✖</span>
+         <p id="popup-text"></p>
+      </div>
+   </div>
+
+   <div id="letters">
+      <div class="letter" data-dir="left" data-message="ข้อความจากจดหมายที่1" onclick="openLetter(this)">📜</div>
+      <div class="letter" data-dir="right" data-message="ข้อความจากจดหมายที่2" onclick="openLetter(this)">📜</div>
+      <div class="letter" data-dir="up" data-message="ข้อความจากจดหมายที่3" onclick="openLetter(this)">📜</div>
+   </div>
+</div>
